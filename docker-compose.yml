@@ -147,7 +147,7 @@ services:
     restart: always
     volumes:
       - ${DATA_DIR}/prometheus:/prometheus
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /data/targets/picostack/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - default
       - prometheus
@@ -171,8 +171,8 @@ services:
       GF_SERVER_ROOT_URL: https://grafana-${HOSTNAME}.${DOMAIN_NAME}
     volumes:
       - ${DATA_DIR}/grafana:/var/lib/grafana
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
-      - ./grafana/plugins/:/var/lib/grafana/plugins/
+      - /data/targets/picostack/grafana/provisioning/:/etc/grafana/provisioning/
+      - /data/targets/picostack/grafana/plugins/:/var/lib/grafana/plugins/
     networks:
       - default
       - prometheus
@@ -196,5 +196,5 @@ services:
     networks:
       - default
     volumes:
-      - ./loki/local-config.yaml:/etc/loki/local-config.yaml
+      - /data/targets/picostack/loki/local-config.yaml:/etc/loki/local-config.yaml
       - ${DATA_DIR}/loki:/data/loki
